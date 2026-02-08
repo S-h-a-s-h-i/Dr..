@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | PhysioCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <h2>PhysioCare</h2>
+            </a>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="login.html"><i class="fas fa-user-md"></i> Doctor Login</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="booking-container">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Book Your Appointment</h2>
+
+        <form id="bookingForm">
+            <!-- Step 1: Service Selection -->
+            <div class="step active" id="step1">
+                <h3>Step 1: Select Service</h3>
+                <div class="form-group">
+                    <label for="service">Service Type</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Choose a Service --</option>
+                        <option value="Sports Injury">Sports Injury</option>
+                        <option value="Orthopedic Rehab">Orthopedic Rehab</option>
+                        <option value="Neurological Physiotherapy">Neurological Physiotherapy</option>
+                        <option value="Pediatric Care">Pediatric Care</option>
+                        <option value="General Checkup">General Checkup</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointment_type">Appointment Type</label>
+                    <select id="appointment_type" name="appointment_type" required>
+                        <option value="">-- Choose Type --</option>
+                        <option value="Online Consultation">Online Consultation</option>
+                        <option value="Clinic Visit">Clinic Visit</option>
+                        <option value="Home Visit">Home Visit</option>
+                    </select>
+                </div>
+                <div class="step-btns">
+                    <div></div>
+                    <button type="button" class="btn btn-primary next-btn">Next <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 2: Date & Time -->
+            <div class="step" id="step2">
+                <h3>Step 2: Schedule</h3>
+                <div class="form-group">
+                    <label for="appointment_date">Preferred Date</label>
+                    <input type="date" id="appointment_date" name="appointment_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment_time">Preferred Time</label>
+                    <input type="time" id="appointment_time" name="appointment_time" required>
+                </div>
+                <div class="step-btns">
+                    <button type="button" class="btn prev-btn" style="background: #ccc;"><i
+                            class="fas fa-arrow-left"></i> Previous</button>
+                    <button type="button" class="btn btn-primary next-btn">Next <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Patient Details -->
+            <div class="step" id="step3">
+                <h3>Step 3: Patient Details</h3>
+                <div class="form-group">
+                    <label for="patient_name">Full Name</label>
+                    <input type="text" id="patient_name" name="patient_name" placeholder="Enter your full name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <small class="error-message" id="emailError"></small>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number (10 digits)"
+                        required>
+                    <small class="error-message" id="phoneError"></small>
+                </div>
+                <div class="form-group">
+                    <label for="doctor_name">Doctor Name</label>
+                    <input type="text" id="doctor_name" name="doctor_name" placeholder="Enter doctor's name" required>
+                </div>
+                <div class="step-btns">
+                    <button type="button" class="btn prev-btn" style="background: #ccc;"><i
+                            class="fas fa-arrow-left"></i> Previous</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <span id="submitBtnText">Confirm Booking</span>
+                        <span id="submitBtnSpinner" class="spinner" style="display: none;"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+
+</html>
