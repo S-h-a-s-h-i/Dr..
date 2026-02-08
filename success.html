@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmed | PhysioCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: white;">
+                <h2>PhysioCare</h2>
+            </a>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="login.html"><i class="fas fa-user-md"></i> Doctor Login</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Appointment Confirmed!</h1>
+            <p class="success-message">Your appointment has been successfully booked.</p>
+
+            <div class="appointment-number-box">
+                <p class="appointment-label">Your Appointment Number</p>
+                <h2 class="appointment-number" id="appointmentNumber">Loading...</h2>
+            </div>
+
+            <div class="appointment-details">
+                <h3>Appointment Details</h3>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-user"></i> Patient Name:</span>
+                    <span class="detail-value" id="patientName">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-user-md"></i> Doctor:</span>
+                    <span class="detail-value" id="doctorName">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-stethoscope"></i> Service:</span>
+                    <span class="detail-value" id="service">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-clipboard-list"></i> Type:</span>
+                    <span class="detail-value" id="appointmentType">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-calendar"></i> Date:</span>
+                    <span class="detail-value" id="appointmentDate">-</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label"><i class="fas fa-clock"></i> Time:</span>
+                    <span class="detail-value" id="appointmentTime">-</span>
+                </div>
+            </div>
+
+            <div class="email-notice">
+                <i class="fas fa-envelope"></i>
+                <p>A confirmation email has been sent to <strong id="emailAddress">your email</strong></p>
+            </div>
+
+            <div class="action-buttons">
+                <a href="booking.html" class="btn btn-secondary">
+                    <i class="fas fa-plus"></i> Book Another Appointment
+                </a>
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Go to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Load appointment details from sessionStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const appointmentDetails = sessionStorage.getItem('appointmentDetails');
+
+            if (!appointmentDetails) {
+                // If no appointment details, redirect to booking page
+                window.location.href = 'booking.html';
+                return;
+            }
+
+            const details = JSON.parse(appointmentDetails);
+
+            // Populate the page with appointment details
+            document.getElementById('appointmentNumber').textContent = details.appointmentNumber;
+            document.getElementById('patientName').textContent = details.patientName;
+            document.getElementById('doctorName').textContent = 'Dr. ' + details.doctorName;
+            document.getElementById('service').textContent = details.service;
+            document.getElementById('appointmentType').textContent = details.appointmentType;
+
+            // Format date
+            const date = new Date(details.appointmentDate);
+            const formattedDate = date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('appointmentDate').textContent = formattedDate;
+
+            document.getElementById('appointmentTime').textContent = details.appointmentTime;
+            document.getElementById('emailAddress').textContent = details.email;
+
+            // Clear sessionStorage after displaying
+            sessionStorage.removeItem('appointmentDetails');
+        });
+    </script>
+</body>
+
+</html>
